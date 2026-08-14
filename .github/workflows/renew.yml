@@ -1,0 +1,36 @@
+name: MWS Renew
+
+on:
+  schedule:
+    # UTC 01:00 = 北京时间 09:00，每天跑一次
+    - cron: '0 1 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  renew:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: ⚙ 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 🛠️ 安装依赖
+        run: pip install requests
+
+      - name: 🚀 运行续期脚本
+        env:
+          MWS_TOKEN: ${{ secrets.MWS_TOKEN }}
+          # 通知（与 notify.py 对齐；两套 TG 命名兼容，可并存）
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          SMTP_CONFIG: ${{ secrets.SMTP_CONFIG }}
+          TZ: Asia/Shanghai
+        run: python3 renew.py
