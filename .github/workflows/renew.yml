@@ -2,8 +2,8 @@ name: MWS Renew
 
 on:
   schedule:
-    # UTC 01:00 = 北京时间 09:00，每天跑一次
-    - cron: '0 1 * * *'
+    # UTC 01:00 = 北京时间 09:00，每周一、三、五跑
+    - cron: '0 1 * * 1,3,5'
   workflow_dispatch: {}
 
 permissions:
