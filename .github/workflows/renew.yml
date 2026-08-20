@@ -2,11 +2,10 @@ name: 🚀 MWS 自动续期与离线唤醒
 
 on:
   # 🕒 定时触发: 每天 UTC 时间 01:00 执行 (北京时间早上 09:00)
-  # 您可以使用 https://crontab.guru/ 工具自定义时间
   schedule:
     - cron: '0 1 * * *'
   
-  # 🖱️ 手动触发: 允许在 GitHub Actions 网页端随时手动点击 "Run workflow" 运行
+  # 🖱️ 手动触发: 允许随时手动运行
   workflow_dispatch:
 
 jobs:
@@ -22,7 +21,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-          cache: 'pip' # 启用 pip 缓存，大幅提升每次运行时的依赖安装速度
+          # 💡 已移除 cache: 'pip'，完美解决找不到 requirements.txt 的报错
 
       - name: 📦 安装 Python 核心依赖
         run: |
@@ -30,29 +29,20 @@ jobs:
           pip install requests playwright
 
       - name: 🌐 下载 Chromium 浏览器内核
-        # --with-deps 确保 Ubuntu 系统底层缺失的字体或库也能一并补齐，防止启动浏览器报错
         run: playwright install chromium --with-deps
 
       - name: ▶️ 执行 MWS 续期与唤醒脚本
         env:
-          # --- 核心认证 ---
           MWS_TOKEN: ${{ secrets.MWS_TOKEN }}
-          
-          # --- Telegram 截图通知配置 ---
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
-          
-          # [可选] 如果您的 notify.py 内部还依赖了其他 Secret (比如 SMTP 邮件)，请在此处继续添加:
-          # SMTP_USER: ${{ secrets.SMTP_USER }}
-          # SMTP_PASS: ${{ secrets.SMTP_PASS }}
         run: |
           python3 renew.py
 
       - name: 📸 归档运行截图 (Artifacts)
-        # 无论脚本最终是成功(0)还是失败(1)，都会执行此步骤，将截图保存到 GitHub 供您审查
         if: always() 
         uses: actions/upload-artifact@v4
         with:
           name: mws-screenshots
           path: ./screenshots/*.png
-          retention-days: 7 # 截图文件保留 7 天后自动清理，不占用仓库空间
+          retention-days: 7
