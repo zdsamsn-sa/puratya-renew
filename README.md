@@ -20,7 +20,7 @@
 
 | 变量名 | 是否必须 | 获取途径与说明 |
 | --- | --- | --- |
-| **`MWS_TOKEN`** | ✅ 必须 | 登录 MWS 面板，按 `F12` 打开开发者工具，在网络或存储 (Cookies) 中找到 `__Host-mrtcloud_token`，复制其完整的 JWT 值（通常以 `eyJ` 开头）。 |
+| **`MWS_TOKEN`** | ✅ 必须 | 登录 MWS 面板，按 `F12` 打开开发者工具，在网络或存储 (Cookies) 中找到 `__Host-mrtcloud_token`，复制其完整的 JWT 值（通常以 `eyJ` 开头）。下方有说明。 |
 | **`TG_BOT_TOKEN`** | ✅ 必须 | 在 Telegram 中向 `@BotFather` 申请创建机器人后获取的 API Token。 |
 | **`TG_CHAT_ID`** | ✅ 必须 | 您的 Telegram 账号 ID，可向 `@userinfobot` 或类似机器人发送消息获取。 |
 
