@@ -28,24 +28,23 @@ POST /api/sites/{id}/renew    # 网站续期
 | Name                  | 值                                                                                   | 必填 |
 | --------------------- | ------------------------------------------------------------------------------------ | ---- |
 | `MWS_TOKEN`           | 你的登录 token（下面教你怎么拿）                                                       | ✅   |
-| `TELEGRAM_BOT_TOKEN`  | Telegram Bot token（找 [@BotFather](https://t.me/BotFather) `/newbot`）               | 可选 |
-| `TELEGRAM_CHAT_ID`    | Telegram 你的 ID（找 [@userinfobot](https://t.me/userinfobot)）                        | 可选 |
-| `SMTP_CONFIG`         | 邮件通知，一个 JSON（见 [NOTIFY.md](NOTIFY.md)）                                       | 可选 |
+| `TELEGRAM_BOT_TOKEN`  | Telegram Bot token | 可选 |
+| `TELEGRAM_CHAT_ID`    | Telegram 你的 ID                      | 可选 |
 
-> 通知是**双通道平行**：TG 和邮件都配了就都发，配哪个用哪个，一个不配不影响另一个；都不配也能正常续期，只是没通知。详细配置（含 SMTP JSON 格式、TG 兼容命名 `TG_BOT_TOKEN`/`TG_CHAT_ID`）见 [NOTIFY.md](NOTIFY.md)。
 
-### 3. 手动跑一次验证
+
+### 2. 手动跑一次验证
 
 仓库 → **Actions** → 左侧 **MWS Renew** → **Run workflow** → **Run workflow**。看到绿色 ✅ 就成功了。
 
 ## 怎么拿 MWS_TOKEN
 
 1. 浏览器登录 [cloud.puratya.com](https://cloud.puratya.com)
-2. 按 `F12` 打开开发者工具 → 顶部选 **Network（网络）**
-3. 刷新页面（或点一下 `Renew` 按钮）
-4. 点任意一个 `bots` / `renew` 请求
-5. 在 **Request Headers** 里找到 `cookie:` 这一行，复制 `__Host-mrtcloud_token=` **后面那一长串**（是 `eyJ...` 开头的）
-6. 粘贴进 GitHub Secret `MWS_TOKEN`
+2. 安装浏览器扩展（任选一个）：
+   Cookie-Editor
+   或 EditThisCookie
+3. 登录成功后，点击扩展 → Export → 选择 JSON 格式
+4. 把导出的内容完整复制粘贴进 GitHub Secret `MWS_TOKEN`
 
 ## ⚠️ Token 有效期
 
