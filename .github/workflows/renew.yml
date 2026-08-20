@@ -2,8 +2,13 @@ name: 🚀 MWS 自动续期与离线唤醒
 
 on:
   schedule:
-    - cron: '0 1 * * *' # 每天 UTC 时间 01:00 执行 (北京时间早上 09:00)
-  workflow_dispatch:    # 允许随时手动运行
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+# 【关键修复】：赋予脚本删除 Actions 记录的读写权限
+permissions:
+  actions: write
+  contents: read
 
 jobs:
   execute-script:
@@ -36,20 +41,18 @@ jobs:
           python3 renew.py
 
       - name: 📸 归档运行截图 (Artifacts)
-        # 即使 Python 脚本报错，依然会执行归档，方便排查
         if: always() 
         uses: actions/upload-artifact@v4
         with:
           name: mws-screenshots
           path: ./screenshots/*.png
-          retention-days: 7
+          retention-days: 3 # 截图包也改为只保留 3 天，节省空间
 
       - name: 🗑️ 清理旧的工作流记录
-        # 【新增功能】保持 GitHub Actions 页面清爽，自动清理旧日志
         if: always()
         uses: Mattraks/delete-workflow-runs@v2
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
-          retain_days: 7       # 保留最近 7 天的记录
-          keep_minimum_runs: 5 # 无论如何最少保留 5 条记录
+          retain_days: 0       # 0 天（无视天数，只要超出数量就删）
+          keep_minimum_runs: 3 # 【激进清理】无论成功失败，永远只保留最近的 3 条记录
