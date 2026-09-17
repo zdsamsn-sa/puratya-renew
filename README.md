@@ -30,12 +30,7 @@ POST /api/sites/{id}/renew    # 网站续期
 | Name           | 值                                   | 必填 |
 | -------------- | ------------------------------------ | ---- |
 | `MWS_TOKEN`    | 你的登录 token（下面教你怎么拿）       | ✅   |
-| `NOTIFY_URL`   | 通知网关上报地址（以 `/api/notify` 结尾） | ✅   |
-| `NOTIFY_TOKEN` | 网关里该项目分配的独立 Key           | ✅   |
 
-> `NOTIFY_URL` / `NOTIFY_TOKEN` 在网关后台 **项目详情页** 复制（网关的部署、SMTP / Telegram 配置见 [notify-gateway](https://github.com/2Bdou/notify-gateway) 的 README）。一个续期仓库对应网关里的一个项目，各用一把 Key。
->
-> 通知通道最终能不能发出去，取决于网关里该项目开关和网关设置页有没有配 SMTP / Telegram。**配好网关前也能正常续期**，只是没有通知。
 
 ### 3. 手动跑一次验证
 
