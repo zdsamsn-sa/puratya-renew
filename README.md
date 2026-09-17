@@ -75,17 +75,21 @@ POST /api/sites/{id}/renew    # 网站续期
 
 ### ❗务必在环境变量配置DISCORD_TOKEN否则节点不通。如何配置自行找AI。❗
 
-<img width="1404" height="599" alt="image" src="https://github.com/user-attachments/assets/24824032-9a29-4ded-9540-3d6c5455652e" />
+<img width="1404" height="599" alt="649923896-24824032-9a29-4ded-9540-3d6c5455652e" src="https://github.com/user-attachments/assets/d518cedf-3de5-4665-9003-365b941314f9" />
+
 
 
 ### 出口（网络）选最后一个
-<img width="1379" height="577" alt="image" src="https://github.com/user-attachments/assets/22d9b8a1-484a-4f2a-8a57-11d2d6bcb251" />
+
+<img width="1379" height="577" alt="649924980-22d9b8a1-484a-4f2a-8a57-11d2d6bcb251" src="https://github.com/user-attachments/assets/acf7326e-30fd-4a4c-9d96-905984ffffa3" />
 
 ### 先手动跑一边，拿到分配的端口自行在app.py修改
 
-<img width="1181" height="240" alt="image" src="https://github.com/user-attachments/assets/b4f99047-40a1-41c7-b813-2d25d8ed5b10" />
+<img width="1181" height="240" alt="649925420-b4f99047-40a1-41c7-b813-2d25d8ed5b10" src="https://github.com/user-attachments/assets/5e96bd3c-994a-4619-b2fa-b0c53a61d6ff" />
 
-<img width="1125" height="98" alt="56d6ad05-8abd-43bb-8978-429daf3f9920" src="https://github.com/user-attachments/assets/6a6e2142-67a4-4f73-b793-5bca3f511a05" />
+
+<img width="1125" height="98" alt="649927998-6a6e2142-67a4-4f73-b793-5bca3f511a05" src="https://github.com/user-attachments/assets/7485a45c-1520-46f6-83e1-b87b4fcf24f7" />
+
 
 
 ## 免责声明
